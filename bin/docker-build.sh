@@ -9,4 +9,4 @@ declare APP_IMG
 
 docker build . \
   --build-arg APP_VER="${APP_VER}" \
-  -t "${APP_IMG}":"${APP_VER}"
+  -t "${APP_IMG}":"${APP_VER}"-pipeline-test
