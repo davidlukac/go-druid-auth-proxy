@@ -1,0 +1,9 @@
+name: default
+run-name: default
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: echo "Hello world!"
+      - run: ls -al
