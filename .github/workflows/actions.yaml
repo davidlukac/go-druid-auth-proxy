@@ -6,4 +6,6 @@ jobs:
     runs-on: ubuntu-22.04
     container: alpine:3.16
     steps:
+      - uses: actions/checkout@v3
+      - run: ls -al
       - run: bin/docker-build.sh
