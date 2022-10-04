@@ -7,5 +7,5 @@ jobs:
     container: alpine:3.16
     steps:
       - uses: actions/checkout@v3
-      - run: ls -al
+      - run: apk -U add --no-cache bash
       - run: bin/docker-build.sh
