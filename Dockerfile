@@ -17,6 +17,4 @@ COPY --from=0 /opt/app/druid-auth-proxy /opt/app/druid-auth-proxy
 
 WORKDIR /opt/app
 
-RUN apk -U add --no-cache curl
-
 CMD ["/opt/app/druid-auth-proxy"]
