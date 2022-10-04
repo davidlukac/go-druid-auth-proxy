@@ -4,6 +4,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-22.04
+    container: alpine:3.16
     steps:
-      - run: echo "Hello world!"
-      - run: ls -al
+      - run: bin/docker-build.sh
