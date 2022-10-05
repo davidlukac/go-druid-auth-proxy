@@ -14,3 +14,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - run: bin/docker-build.sh
       - run: docker push ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:0.1.0-pipeline-test
+      - uses: ishworkh/docker-image-artifact-upload@v1
+        with:
+          image: ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:0.1.0-pipeline-test
