@@ -23,8 +23,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: bin/docker-build.sh "-${GITHUB_SHA}"
-      - run: docker image ls
-      - run: mkdir -p "/tmp/${APP_IMG}"
       - name: Upload binary artifact
         uses: actions/upload-artifact@v3
         with:
@@ -34,6 +32,6 @@ jobs:
       - name: Upload Docker image as artifact
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: "${APP_IMG}:${APP_VER}-${GITHUB_SHA}"
+          image: "${{ env.APP_IMG }}:${{ env.APP_VER }}-${{ env.GITHUB_SHA }}"
           retention_days: "7"
 #      - run: docker push ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:0.1.0-pipeline-test
