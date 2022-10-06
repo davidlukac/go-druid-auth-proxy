@@ -23,6 +23,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: bin/docker-build.sh "-${GITHUB_SHA}"
+      - run: docker image ls
       - name: Upload binary artifact
         uses: actions/upload-artifact@v3
         with:

@@ -24,4 +24,4 @@ ls -al build
 docker build . \
   --file package.Dockerfile \
   --build-arg APP_VER="${APP_VER}" \
-  -t "${APP_IMG}":"${APP_VER}${1}"
+  -t "${APP_IMG}:${APP_VER}${1}"
