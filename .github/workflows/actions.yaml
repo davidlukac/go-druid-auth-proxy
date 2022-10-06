@@ -24,6 +24,7 @@ jobs:
       - name: Build
         run: bin/docker-build.sh "-${GITHUB_SHA}"
       - run: docker image ls
+      - run: mkdir -p "/tmp/${APP_IMG}"
       - name: Upload binary artifact
         uses: actions/upload-artifact@v3
         with:
