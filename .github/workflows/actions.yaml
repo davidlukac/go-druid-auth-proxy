@@ -32,6 +32,6 @@ jobs:
       - name: Upload Docker image as artifact
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: "${{ env.APP_IMG }}:${{ env.APP_VER }}-${{ env.GITHUB_SHA }}"
+          image: "${{ env.APP_IMG }}:${{ env.APP_VER }}-${{ github.sha }}"
           retention_days: "7"
 #      - run: docker push ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:0.1.0-pipeline-test
