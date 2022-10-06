@@ -1,5 +1,5 @@
 name: Release
-run-name: "Release:${{ github.actor }}/${{ github.triggering_actor }}:${{ github.event }}:${{ github.ref_name }}:#${{ github.run_attempt }}/#${{ github.run_number }}/#${{ github.run_id }}"
+run-name: "${{ github.event.type }}: ${{ github.triggering_actor }}@${{ github.ref_name }} ${{ github.run_attempt }}/${{ github.run_number }}/${{ github.run_id }}"
 
 on:
   push:
