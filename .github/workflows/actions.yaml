@@ -1,6 +1,8 @@
 name: default
 run-name: default
 on: [push]
+env:
+  DOCKER_BUILDKIT: 1
 jobs:
   build:
     runs-on: ubuntu-22.04
