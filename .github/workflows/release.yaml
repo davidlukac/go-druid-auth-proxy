@@ -1,0 +1,27 @@
+name: Release
+run-name: "Release:${{ github.actor }}/${{ github.triggering_actor }}:${{ github.event }}:${{ github.ref_name }}:#${{ github.run_attempt }}/#${{ github.run_number }}/#${{ github.run_id }}"
+
+on:
+  push:
+    tags:
+      - v*
+
+env:
+  DOCKER_BUILDKIT: 1
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+  release:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Create Release
+        uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
