@@ -1,5 +1,5 @@
 name: Build
-run-name: "${{ github.event.type }}: ${{ github.triggering_actor }}@${{ github.ref_name }} ${{ github.run_attempt }}/${{ github.run_number }}/${{ github.run_id }}"
+run-name: "build: ${{ github.triggering_actor }}@${{ github.ref_name }}"
 
 on: [push]
 
