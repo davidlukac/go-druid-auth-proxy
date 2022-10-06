@@ -9,6 +9,10 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v3
+      - name: Load environment variables
+        uses: c-py/action-dotenv-to-setenv@v2
+        with:
+          env-file: .env
       - name: Set up Docker
         uses: docker/setup-buildx-action@v2
       - name: Log into Docker registry
@@ -18,7 +22,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
-        run: bin/docker-build.sh
+        run: bin/docker-build.sh "-${GITHUB_SHA}"
       - name: Upload binary artifact
         uses: actions/upload-artifact@v3
         with:
@@ -28,6 +32,6 @@ jobs:
       - name: Upload Docker image as artifact
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image: ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:0.1.0-pipeline-test
+          image: "${APP_IMG}:${APP_VER}-${GITHUB_SHA}"
           retention_days: "7"
 #      - run: docker push ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:0.1.0-pipeline-test
