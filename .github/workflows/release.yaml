@@ -46,3 +46,4 @@ jobs:
         with:
           files: |
             build/jdbc-basicauth-proxy_amd64_alpine
+          body: "ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:${{ env.APP_VER }}"
