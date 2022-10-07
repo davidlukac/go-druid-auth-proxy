@@ -1,22 +1,12 @@
-FROM golang:1.19-alpine3.16
+FROM golang:1.19-alpine3.16@sha256:2baa528036c1916b23de8b304083c68fb298c5661203055f2b1063390e3cdddb
 
 WORKDIR /opt/app
 
 COPY proxy.go go.mod go.sum ./
 
-RUN go build -o druid-auth-proxy .
+RUN mkdir -p build/ && go build -o build/jdbc-basicauth-proxy .
 
 
-FROM alpine:3.16.2
+FROM scratch as export
 
-ARG APP_VER
-
-ENV APP_VER=${APP_VER}
-
-COPY --from=0 /opt/app/druid-auth-proxy /opt/app/druid-auth-proxy
-
-WORKDIR /opt/app
-
-RUN apk -U add --no-cache curl
-
-CMD ["/opt/app/druid-auth-proxy"]
+COPY --from=0 /opt/app/build/jdbc-basicauth-proxy /jdbc-basicauth-proxy_amd64_alpine
