@@ -39,7 +39,6 @@ jobs:
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
           image: "${{ env.APP_IMG }}:${{ env.APP_VER }}"
-      - run: echo "${{ github.ref_type }}:${{ github.ref_name }}"
       - name: Push image to registry
         run: "docker push ${{ env.APP_IMG }}:${{ env.APP_VER }}"
       - name: Create Release
