@@ -6,15 +6,12 @@ on:
     tags:
 #      - v*
       - test*
-#on: [push]
 
 env:
   DOCKER_BUILDKIT: 1
 
 jobs:
   build:
-    uses: ./.github/workflows/build.yaml
-  release:
     runs-on: ubuntu-22.04
     steps:
       - name: Git checkout
@@ -42,8 +39,11 @@ jobs:
       - name: Upload Docker image as artifact
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
-          image:
+          image: "${{ env.APP_IMG }}:${{ env.APP_VER }}"
       - run: echo "${{ github.ref_type }}:${{ github.ref_name }}"
+  release:
+    runs-on: ubuntu-22.04
+    steps:
       - name: Push image to registry
         run: "docker push ${{ env.APP_IMG }}:${{ env.APP_VER }}"
       - name: Create Release
