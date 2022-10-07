@@ -4,8 +4,7 @@ run-name: "release: ${{ github.triggering_actor }}@${{ github.ref_name }}"
 on:
   push:
     tags:
-#      - v*
-      - test*
+      - v*
 
 env:
   DOCKER_BUILDKIT: 1
@@ -40,10 +39,6 @@ jobs:
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
           image: "${{ env.APP_IMG }}:${{ env.APP_VER }}"
-      - run: echo "${{ github.ref_type }}:${{ github.ref_name }}"
-  release:
-    runs-on: ubuntu-22.04
-    steps:
       - name: Push image to registry
         run: "docker push ${{ env.APP_IMG }}:${{ env.APP_VER }}"
       - name: Create Release
