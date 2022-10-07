@@ -37,4 +37,3 @@ jobs:
         with:
           image: "${{ env.APP_IMG }}:${{ env.APP_VER }}-${{ github.sha }}"
           retention_days: "7"
-#      - run: docker push ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:0.1.0-pipeline-test
