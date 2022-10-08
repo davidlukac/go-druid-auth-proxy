@@ -47,8 +47,6 @@ jobs:
           files: |
             build/jdbc-basicauth-proxy_amd64_alpine
           body: |
-            https://github.com/davidlukac/go-jdbc-basicauth-proxy/releases/tag/v${{ env.APP_VER }}
             https://ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:${{ env.APP_VER }}
-            FROM ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:${{ env.APP_VER }}"
-            https://github.com/davidlukac/go-jdbc-basicauth-proxy/pkgs/container/jdbc-basicauth-proxy%2Falpine
 
+            FROM ghcr.io/davidlukac/jdbc-basicauth-proxy/alpine:${{ env.APP_VER }}"
